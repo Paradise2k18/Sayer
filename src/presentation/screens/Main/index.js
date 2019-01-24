@@ -2,6 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 export default class Main extends React.Component {
+
+  static navigationOptions = {
+    header:null
+}
+
   render() {
     return(
       <View>
