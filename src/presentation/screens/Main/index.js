@@ -10,12 +10,24 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
     header:null
   }
 
+  navigateToNewConnect = (element) => {
+    this.props.navigation.navigate('NewComment', { element });
+  }
+
   renderItem = () => {
     return(
       this.props.items.text.map(element => (
         
-        <View key={element.id} style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}>
-          <Text style={{ flex: 1, fontSize: 22 }}>
+        <TouchableOpacity 
+          key={element.id} 
+          style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}
+          onPress={() => this.navigateToNewConnect(element)}
+        >
+          <Text 
+            style={{ flex: 1, fontSize: 22,marginRight: 10 }}
+            numberOfLines={1}
+            ellipsizeMode='tail'
+          >
             {element.value}
           </Text>
           <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
@@ -32,7 +44,7 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
             </Text>
           </TouchableOpacity>
           
-        </View>
+        </TouchableOpacity>
       ))
     );
   }
