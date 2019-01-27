@@ -5,12 +5,12 @@ const INITIAL_STATE = {
     {
       id: 0,
       value: 'hazard',
-      comments: []
+      comments: ['best chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea playerbest chelsea player dsadsadasda','n1','no to real']
     },
      {
        id: 1,
        value: 'second text',
-       comments: []
+       comments: ['hello','dude']
      },
      {
       id: 2,
