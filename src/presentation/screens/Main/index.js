@@ -1,5 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { removeItem } from '../../redux/actions/ItemAction/index';
+
  class Main extends React.Component {
 
   static navigationOptions = {
@@ -7,44 +11,27 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
   }
 
   renderItem = () => {
-    const arr = [
-      {
-        id: 1,
-        text: 'first text'
-      },
-       {
-         id: 2,
-         text: 'second text'
-       },
-       {
-        id: 3,
-        text: 'first text'
-      },
-      {
-        id: 4,
-        text: 'first text'
-      },
-      {
-        id: 5,
-        text: 'first text'
-      },
-      {
-        id: 6,
-        text: 'first text'
-      },
-    ];
-    
     return(
-      arr.map(element => (
+      this.props.items.text.map(element => (
+        
         <View key={element.id} style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}>
           <Text style={{ flex: 1, fontSize: 22 }}>
-            {element.text}
+            {element.value}
           </Text>
           <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{ color: 'white', fontSize: 20 }}>
               22
             </Text>
           </View>
+          <TouchableOpacity 
+            style={{ backgroundColor: 'red', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}
+            onPress={() => this.props.removeItem(element.id)}
+          >
+            <Text style={{ color: 'white', fontSize: 20 }}>
+              {element.id}
+            </Text>
+          </TouchableOpacity>
+          
         </View>
       ))
     );
@@ -79,4 +66,15 @@ import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
   }
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+  const { items } = state
+  return { items }
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    removeItem,
+  }, dispatch)
+);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
+

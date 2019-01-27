@@ -1,11 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addItem } from '../../redux/actions/ItemAction/index';
 
-export default class NewItem extends React.Component {
+
+class NewItem extends React.Component {
 
   static navigationOptions = {
     header:null
 }
+
+  addItem = () => {
+    this.props.addItem('new itm');
+    this.props.navigation.navigate('Main');
+  }
 
   render() {
     return(
@@ -32,7 +41,10 @@ export default class NewItem extends React.Component {
             autoCorrect={false}
             numberOfLines={1}
           />
-          <TouchableOpacity style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
+          <TouchableOpacity 
+            style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}
+            onPress={this.addItem}
+          >
             <Text style={{ color: 'white', fontSize: 24 }}>
               >
             </Text>
@@ -42,3 +54,16 @@ export default class NewItem extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { items } = state
+  return { items }
+};
+
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({
+    addItem,
+  }, dispatch)
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewItem);
