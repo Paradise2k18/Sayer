@@ -7,6 +7,14 @@ import { addComment } from '../../redux/actions/ItemAction/index';
 
 class NewComment extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: ''
+    };
+  }
+
   static navigationOptions = {
     header:null
 }
@@ -27,7 +35,11 @@ renderComment = (text, index) => {
 }
 
 addComment = (index, value) => {
-  this.props.addComment(index, value);
+  if (value.length > 0){
+    this.props.addComment(index, value);
+  } else {
+    alert('Enter a value');
+  }
 }
 
   render() {
@@ -63,13 +75,16 @@ addComment = (index, value) => {
         <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 7, backgroundColor: 'lightgrey', marginBottom: 22 }}>
           <TextInput 
             placeholder="  add new comment"
-            style={{ flex: 1, marginRight: 15, height: 50, fontSize: 20, backgroundColor: 'white',borderWidth: 1, borderColor: 'lightgrey' }}
+            style={{ flex: 1, marginRight: 15, height: 50, fontSize: 20, backgroundColor: 'white',borderWidth: 1, borderColor: 'lightgrey',paddingLeft: 10 }}
             autoCorrect={false}
             numberOfLines={1}
+            clearTextOnFocus
+            onChangeText={(v) => this.state.value = v}
+
           />
           <TouchableOpacity 
             style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginTop: 3 }}
-            onPress={() => this.addComment(index, 'new comment')}
+            onPress={() => this.addComment(index, this.state.value)}
           >
             <Text style={{ color: 'white', fontSize: 24 }}>
               >
