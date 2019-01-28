@@ -5,7 +5,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-import itemsReducer from './redux/reducers/ItemReducer/index';
+import combineReducers from './redux/reducers/ItemReducer/index';
 import AppNavigator from './AppNavigator';
 
 const persistConfig = {
@@ -13,7 +13,7 @@ const persistConfig = {
  storage: storage,
  stateReconciler: autoMergeLevel2 
 };
-const pReducer = persistReducer(persistConfig, itemsReducer);
+const pReducer = persistReducer(persistConfig, combineReducers);
 const store = createStore(pReducer);
 const persistor = persistStore(store);
 
