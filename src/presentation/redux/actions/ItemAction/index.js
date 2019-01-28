@@ -10,7 +10,7 @@ export const removeItem = index => (
     type: 'REMOVE_ITEM',
     index
   }
-)
+);
 
 export const addComment = (index, comment) => (
   {
@@ -18,4 +18,4 @@ export const addComment = (index, comment) => (
     index,
     comment
   }
-)
+);
