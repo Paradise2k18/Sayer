@@ -1,4 +1,4 @@
-import { combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 const INITIAL_STATE = {
   text: [
@@ -45,7 +45,7 @@ const itemReducer = (state = INITIAL_STATE, action) => {
     case 'ADD_ITEM':
 
     const addedItem = action.item
-    text.push({id: text.length === 0 ? 0 : text[text.length-1].id + 1, value: addedItem});
+    text.push({id: text.length === 0 ? 0 : text[text.length-1].id + 1, value: addedItem, comments: []});
 
     
     return { text };
@@ -53,6 +53,11 @@ const itemReducer = (state = INITIAL_STATE, action) => {
     case 'REMOVE_ITEM':
 
     text.splice(text.findIndex(element => element.id === action.index), 1)
+    return { text };
+
+    case 'ADD_COMMENT':
+
+    text[action.index].comments.push(action.comment)
     return { text };
 
     default:

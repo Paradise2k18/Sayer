@@ -11,3 +11,11 @@ export const removeItem = index => (
     index
   }
 )
+
+export const addComment = (index, comment) => (
+  {
+    type: 'ADD_COMMENT',
+    index,
+    comment
+  }
+)

@@ -17,7 +17,6 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
   renderItem = () => {
     return(
       this.props.items.text.map(element => (
-        
         <TouchableOpacity 
           key={element.id} 
           style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}
@@ -32,18 +31,17 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
           </Text>
           <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
             <Text style={{ color: 'white', fontSize: 20 }}>
-              22
+              {element.comments.length}
             </Text>
           </View>
-          <TouchableOpacity 
+          {/* <TouchableOpacity 
             style={{ backgroundColor: 'red', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}
             onPress={() => this.props.removeItem(element.id)}
           >
             <Text style={{ color: 'white', fontSize: 20 }}>
               {element.id}
             </Text>
-          </TouchableOpacity>
-          
+          </TouchableOpacity> */}
         </TouchableOpacity>
       ))
     );
@@ -88,5 +86,6 @@ const mapDispatchToProps = dispatch => (
     removeItem,
   }, dispatch)
 );
+
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
