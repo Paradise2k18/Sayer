@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Swipeable from 'react-native-swipeable';
 import { removeItem } from '../../redux/actions/ItemAction/index';
 
  class Main extends React.Component {
@@ -10,39 +11,45 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
     header:null
   }
 
-  navigateToNewConnect = (element) => {
+  navigateToNewComment = (element) => {
     this.props.navigation.navigate('NewComment', { element });
   }
 
   renderItem = () => {
+    
+    const deleteButton = (element) => [
+      <TouchableOpacity
+        style={{ height: 80, width: 80, alignItems: 'center',justifyContent: 'center', backgroundColor: '#e6005c' }}
+        onPress={() => this.props.removeItem(element.id)}
+      >
+        <Text style={{ color: 'white' }}>Delete</Text>
+      </TouchableOpacity>
+    ];
+
     return(
       this.props.items.text.map(element => (
-        <TouchableOpacity 
+        <Swipeable 
           key={element.id} 
-          style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}
-          onPress={() => this.navigateToNewConnect(element)}
+          rightButtons={deleteButton(element)}
         >
-          <Text 
-            style={{ flex: 1, fontSize: 22,marginRight: 10 }}
-            numberOfLines={1}
-            ellipsizeMode='tail'
+          <TouchableOpacity  
+            style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}
+            onPress={() => this.navigateToNewComment(element)}
           >
-            {element.value}
-          </Text>
-          <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              {element.comments.length}
+            <Text 
+              style={{ flex: 1, fontSize: 22,marginRight: 10 }}
+              numberOfLines={1}
+              ellipsizeMode='tail'
+            >
+              {element.value}
             </Text>
-          </View>
-          {/* <TouchableOpacity 
-            style={{ backgroundColor: 'red', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginLeft: 10 }}
-            onPress={() => this.props.removeItem(element.id)}
-          >
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              {element.id}
-            </Text>
-          </TouchableOpacity> */}
-        </TouchableOpacity>
+            <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
+              <Text style={{ color: 'white', fontSize: 20 }}>
+                {element.comments.length}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </Swipeable>
       ))
     );
   }

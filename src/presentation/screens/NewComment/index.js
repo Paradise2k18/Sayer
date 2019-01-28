@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addComment } from '../../redux/actions/ItemAction/index';
@@ -56,7 +56,9 @@ addComment = (index, value) => {
             </Text>
           </View>
         </View>
-        {this.renderComment(text, index)}
+        <ScrollView>
+          {this.renderComment(text, index)}
+        </ScrollView>
         <View style={{ flex: 1 }}/>
         <View style={{ flexDirection: 'row', paddingHorizontal: 10, paddingVertical: 7, backgroundColor: 'lightgrey', marginBottom: 22 }}>
           <TextInput 
