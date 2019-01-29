@@ -47,7 +47,10 @@ addComment = (index, value) => {
 
 renderKeyboardSpacer = () => {
   if (Platform.OS === 'ios') {
-    <KeyboardSpacer />
+    return(
+      <KeyboardSpacer />
+    );
+    
   }
 }
 
