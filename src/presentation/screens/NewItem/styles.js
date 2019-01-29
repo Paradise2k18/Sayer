@@ -37,9 +37,9 @@ export default StyleSheet.create({
     marginRight: 15, 
     borderBottomWidth: 1,
     borderColor: 'lightgrey', 
-    height: 40, 
+    height: 60, 
     fontSize: 20, 
-    paddingLeft: 10
+    paddingLeft: 10,
   },
   addItemView: {
     backgroundColor: '#0f1f3d', 
@@ -47,7 +47,8 @@ export default StyleSheet.create({
     width: 44, 
     borderRadius: 22, 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginTop: 15
   },
   addItemText: {
     color: 'white', 
