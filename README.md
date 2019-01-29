@@ -21,6 +21,7 @@ You will need the following things properly installed on your computer.
 `or open Sayer/ios/Sayer.xcodeproj in XCode and press 'Run'`
 
 ##Running on Android
+
 `Open Android Studio and start your simulator or connect device to computer and run react-native run-android in terminal(console)`
 
-`To check if device or emulator is connected use `adb devices``
+`To check if device or emulator is connected use 'adb devices'`
