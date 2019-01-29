@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { addComment } from '../../redux/actions/ItemAction/index';
 import styles from './styles';
 
@@ -37,6 +38,8 @@ renderComment = (text, index) => {
 addComment = (index, value) => {
   if (value.length > 0){
     this.props.addComment(index, value);
+    this.textInput.clear();
+    Keyboard.dismiss();
   } else {
     alert('Enter a value');
   }
@@ -74,6 +77,7 @@ addComment = (index, value) => {
         <View style={{ flex: 1 }}/>
         <View style={styles.inputFormView}>
           <TextInput 
+            ref={input => { this.textInput = input }}
             placeholder="  add new comment"
             style={styles.textInput}
             autoCorrect={false}
@@ -91,6 +95,7 @@ addComment = (index, value) => {
             </Text>
           </TouchableOpacity>
         </View>
+        <KeyboardSpacer />
       </View>
     );
   }
