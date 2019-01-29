@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Swipeable from 'react-native-swipeable';
 import { removeItem } from '../../redux/actions/ItemAction/index';
+import styles from './styles';
 
  class Main extends React.Component {
 
@@ -19,7 +20,7 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
     
     const deleteButton = (element) => [
       <TouchableOpacity
-        style={{ height: 80, width: 80, alignItems: 'center',justifyContent: 'center', backgroundColor: '#e6005c' }}
+        style={styles.deleteButton}
         onPress={() => this.props.removeItem(element.id)}
       >
         <Text style={{ color: 'white' }}>Delete</Text>
@@ -33,18 +34,18 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
           rightButtons={deleteButton(element)}
         >
           <TouchableOpacity  
-            style={{ height: 80, flexDirection: 'row', paddingHorizontal: 20, borderBottomWidth: 1, borderColor: 'lightgrey', alignItems: 'center' }}
+            style={styles.itemView}
             onPress={() => this.navigateToNewComment(element)}
           >
             <Text 
-              style={{ flex: 1, fontSize: 22,marginRight: 10 }}
+              style={styles.itemText}
               numberOfLines={1}
               ellipsizeMode='tail'
             >
               {element.value}
             </Text>
-            <View style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}>
-              <Text style={{ color: 'white', fontSize: 20 }}>
+            <View style={styles.commentCountView}>
+              <Text style={styles.commentCountText}>
                 {element.comments.length}
               </Text>
             </View>
@@ -57,11 +58,11 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
   render() {
     return(
       <View>
-        <View style={{ backgroundColor: '#0f1f3d', height: 130, justifyContent: 'center', paddingLeft: 20, paddingTop: 20 }}>
-          <Text style={{ fontSize: 35, fontWeight: 'bold', color: 'white' }}>
+        <View style={styles.headerView}>
+          <Text style={styles.headerMainText}>
             Sayer
           </Text>
-          <Text style={{ marginTop: 5, fontSize: 14, fontWeight: 'bold', color: 'white' }}>
+          <Text style={styles.headerSecondaryText}>
             World's most used time waster
           </Text>
         </View>
@@ -71,8 +72,8 @@ import { removeItem } from '../../redux/actions/ItemAction/index';
             onPress={() => this.props.navigation.navigate('NewItem')}
             style={{ marginBottom: 160}}
           >
-            <View style={{ marginTop: 25, height: 70, width: 70, borderRadius: 35, alignSelf: 'center', alignItems: 'center', justifyContent: 'center', backgroundColor: '#e6005c'}}>
-              <Text style={{ fontSize: 50, fontWeight: 'bold', color: 'white'}}>
+            <View style={styles.addItemView}>
+              <Text style={styles.addItemText}>
                 +
               </Text>
             </View>

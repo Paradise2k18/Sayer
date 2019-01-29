@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addItem } from '../../redux/actions/ItemAction/index';
-
+import styles from './styles';
 
 class NewItem extends React.Component {
 
@@ -32,33 +32,33 @@ class NewItem extends React.Component {
     return(
       <View>
         <View 
-          style={{ backgroundColor: '#0f1f3d', height: 140, paddingLeft: 20,flexDirection: 'row', paddingTop: 20, alignItems: 'center'}}  
+          style={styles.headerView}  
         >
           <TouchableOpacity 
-            style={{ backgroundColor: '#1f3d7a', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', marginRight: 20 }}
+            style={styles.backButtonView}
             onPress={() => this.props.navigation.pop()}
           >
-            <Text style={{ color: 'white', fontSize: 24 }}>
+            <Text style={styles.backButtonText}>
               ←
             </Text>
           </TouchableOpacity>
-          <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'white' }}>
+          <Text style={styles.headerText}>
             Create new item
           </Text>
         </View>
-        <View style={{ flexDirection: 'row', paddingHorizontal: 20, paddingTop: 30 }}>
+        <View style={styles.inputFormView}>
           <TextInput 
             placeholder="add new item"
-            style={{ flex: 1, marginRight: 15, borderBottomWidth: 1, borderColor: 'lightgrey', height: 40, fontSize: 20, paddingLeft: 10 }}
+            style={styles.textInputView}
             autoCorrect={false}
             numberOfLines={1}
             onChangeText={(v) => this.state.value = v}
           />
           <TouchableOpacity 
-            style={{ backgroundColor: '#0f1f3d', height: 44, width: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center'}}
+            style={styles.addItemView}
             onPress={() => this.addItem(this.state.value)}
           >
-            <Text style={{ color: 'white', fontSize: 24 }}>
+            <Text style={styles.addItemText}>
               >
             </Text>
           </TouchableOpacity>
