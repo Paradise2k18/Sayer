@@ -26,6 +26,6 @@ You will need the following things properly installed on your computer.
 
 `To run using apk use `
 
-`adb install -r ./app/build/outputs/apk/release/app-release.apk`
+`adb install -r ./android/app-release.apk`
 
 `To check if device or emulator is connected use 'adb devices'`
