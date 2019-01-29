@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, ScrollView, Keyboard } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView, Keyboard, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -42,6 +42,12 @@ addComment = (index, value) => {
     Keyboard.dismiss();
   } else {
     alert('Enter a value');
+  }
+}
+
+renderKeyboardSpacer = () => {
+  if (Platform.OS === 'ios') {
+    <KeyboardSpacer />
   }
 }
 
@@ -95,7 +101,7 @@ addComment = (index, value) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <KeyboardSpacer />
+        {this.renderKeyboardSpacer()}
       </View>
     );
   }
