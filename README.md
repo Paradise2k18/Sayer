@@ -24,4 +24,8 @@ You will need the following things properly installed on your computer.
 
 `Open Android Studio and start your simulator or connect device to computer and run react-native run-android in terminal(console)`
 
+`To run using apk use `
+
+`adb install -r ./app/build/outputs/apk/release/app-release.apk`
+
 `To check if device or emulator is connected use 'adb devices'`
